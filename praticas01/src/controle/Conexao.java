@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class Conexao {
 	
 	private static Connection Conexao;
-	private Conexao instancia;
-	private static final String DATABASE = "hr";
-	private static final String USER = "aluno";
+	private static Conexao instancia;
+	private static final String DATABASE = "big";
+	private static final String USER = "root";
 	private static final String PSW = "aluno";
 	
 	
@@ -17,14 +17,14 @@ public class Conexao {
 		
 	}
 	
-	public Conexao getIntancia() {
+	public static Conexao getIntancia() {
 		if (instancia  == null) {
 			instancia = new Conexao();
 		}
 		return instancia;
 	}
 	
-	public static Connection conectar() {
+	public  Connection conectar() {
 		try {
 			Conexao = DriverManager.getConnection("jdbc:mysql://localhost/" + DATABASE +"?serverTimezone=UTC", USER, PSW);
 		} catch (SQLException e) {
@@ -32,7 +32,7 @@ public class Conexao {
 		}
 		return Conexao;
 	}
-	public static boolean fecharConexao() {
+	public  boolean fecharConexao() {
 		try {
 			Conexao.close();
 		}catch(SQLException e) {
